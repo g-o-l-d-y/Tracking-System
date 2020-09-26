@@ -67,6 +67,7 @@ public class UserController {
 				page="Home";
 				session.setAttribute("loggedIn", loggedIn);
 				session.setAttribute("username", username);
+				session.setAttribute("flag", 0);
 				session.setAttribute("participantId", userDAO.getUserByUserName(username).getParticipantId());
 				System.out.println(username+" "+userDAO.getUserByUserName(username).getParticipantId());
 		}
@@ -75,7 +76,7 @@ public class UserController {
 	  
 	
 	  @RequestMapping(value="registerUser", method=RequestMethod.POST)
-	  public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, Map<String, Object> model) 
+	  public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, Map<String, Object> model, Model m) 
 	  {
 	   		if(result.hasErrors()) 
 	   		{ 
@@ -86,6 +87,7 @@ public class UserController {
 	   		user.setParticipantId(user.getUserName().hashCode());
 	   		user.setEnabled(true);
 	   		userDAO.registerUser(user);
+	   		m.addAttribute("f",0);
 	   		return "Login";
 	  }
 	  
@@ -125,27 +127,12 @@ public class UserController {
 		String un=(String) session.getAttribute("username");
 		User user=userDAO.getUserByUserName(un);
 		ArrayList<String> network=user.getTemporaryNetwork();
-		ArrayList<Integer> p=new ArrayList<Integer>();
+		ArrayList<Pair<Integer,String>> p=new ArrayList<Pair<Integer,String>>();
 		if(network.size()==0)
 		{
 			network.add((String) session.getAttribute("username"));
 			String username=userDAO.getUserByParticipantId(participantId).getUserName();
-			if(!(network.contains(username)))
-			{
-				String role=userDAO.getUserByUserName(username).getRole();
-				int f=0;
-				for(int i=0;i<network.size();i++)
-				{
-					String r=userDAO.getUserByUserName(network.get(i)).getRole();
-					if(r.equals(role))
-					{
-						f=1;
-						break;
-					}
-				}
-				if(f==0)
-					network.add(username);
-			}
+			network.add("customs");
 		}
 		else if(network.size()<5)
 		{
@@ -171,7 +158,10 @@ public class UserController {
 		}
 		userDAO.updateUser(user);
 		for(String s:network)
-			  p.add(userDAO.getUserByUserName(s).getParticipantId());
+		{
+			Pair<Integer,String> ans = new Pair<Integer,String>(userDAO.getUserByUserName(s).getParticipantId(), userDAO.getUserByUserName(s).getRole());
+			p.add(ans);
+		}
 		m.addAttribute("Network", p);
 		m.addAttribute("size", p.size());
 		
@@ -187,24 +177,17 @@ public class UserController {
   		String un=(String) session.getAttribute("username");
 		User user=userDAO.getUserByUserName(un);
 		ArrayList<String> network=user.getTemporaryNetwork();
-		ArrayList<Integer> p=new ArrayList<Integer>();
+		ArrayList<Pair<Integer,String>> p=new ArrayList<Pair<Integer,String>>();
 		String username=userDAO.getUserByParticipantId(participantId).getUserName();
 		System.out.println(participantId+" "+username);
-  		if(network.contains(username))
-  		{
-  			for(int i=0;i<network.size();i++)
-  			{
-  				if(network.get(i).equals(username))
-  				{
-  					System.out.println(network.get(i).equals(username)+" "+network.get(i));
-  					network.remove(i);
-  				}
-  			}
-  			
-  		}
+  		network.remove(username);
   		userDAO.updateUser(user);
   		for(String s:network)
-			  p.add(userDAO.getUserByUserName(s).getParticipantId());
+		{
+			Pair<Integer,String> ans = new Pair<Integer,String>(userDAO.getUserByUserName(s).getParticipantId(), userDAO.getUserByUserName(s).getRole());
+			p.add(ans);
+		}
+  		
   		List<User> userList=userDAO.getUserList();
   		
 		m.addAttribute("Network", p);

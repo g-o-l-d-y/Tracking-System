@@ -26,6 +26,7 @@ public class UserTest {
 	userDAO=(UserDAO)context.getBean("userDAO");
 	}
 
+	@Ignore
 	@Test
 	public void registerUserTest()
 	{
@@ -49,7 +50,6 @@ public class UserTest {
 		user.setCustomerName("Lidya Dashwood");
 		assertTrue("Update failed", userDAO.updateUser(user));
 	}
-	
 	@Ignore
 	@Test
 	public void getUserListTest()
@@ -86,7 +86,6 @@ public class UserTest {
 		//assertTrue(userDAO.createNetwork("lidya18", "customs"));
 	}
 	
-	@Ignore
 	@Test
 	public void updateNetworkTest()
 	{
@@ -94,7 +93,7 @@ public class UserTest {
 		  ArrayList<String> als=user.getTemporaryNetwork();
 		  ArrayList<ArrayList> al=user.getNetworks();
 		  als.clear();
-		  al.clear();
+		  //al.clear();
 		  assertTrue("Problem",userDAO.updateUser(user));
 	}
 	

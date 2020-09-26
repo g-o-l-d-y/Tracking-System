@@ -13,21 +13,21 @@
 			  var pw = document.forms["myForm"]["password"].value;
 			  var address = document.forms["myForm"]["address"].value;
 			  var role = document.forms["myForm"]["role"].value;
-			  if (name == "*Name") {
+			  if (name == "") {
 			    alert("Name must be filled out");
 			    return false;
 			  }
-			  if(uname=="*Username")
+			  if(uname=="")
 			  {
 				  alert("Username must be filled out");
 				  return false;
 			  }
-			  if(pw=="*Password")
+			  if(pw=="")
 			  {
 				  alert("Password must be filled out");
 				  return false;
 			  }
-			  if(address=="*Address")
+			  if(address=="")
 			  {
 				  alert("Address must be filled out");
 				  return false;
@@ -48,13 +48,13 @@
 				<div class="form-group row">
 	    			<!-- <label for="customerName" class="col-sm-3 col-form-label"><h4><b>Name</b></h4></label> -->
 	    			<div class="col-sm-3">
-	    				<input type="text" class="form-control" name="customerName" value="*Name">
+	    				<input type="text" class="form-control" name="customerName" placeholder="*Name">
 	    			</div>
 	    		</div>
 	    		<div class="form-group row">
 	    			<!-- <label for="userName" class="col-sm-3 col-form-label"><h4><b>Username</b></h4></label> -->
 	    			<div class="col-sm-3">
-	    				<form:input path="userName" class="form-control" name="userName" value="*Username"/>
+	    				<form:input path="userName" class="form-control" name="userName" placeholder="*Username"/>
 	    			</div>
 	    			<div class="col-sm-2">
 	    				<form:errors path="userName" cssClass="error"/>
@@ -63,14 +63,14 @@
 	    		<div class="form-group row">
 	    			<!-- <label for="password" class="col-sm-3 col-form-label"><h4><b>Password</b></h4></label> -->
 	    			<div class="col-sm-3">
-	    				<input type="text" class="form-control" name="password" value="*Password">
+	    				<input type="text" class="form-control" name="password" placeholder="*Password">
 	    			</div>
 	    		</div>
 	    		<div class="form-group row">
 	    			<!-- <label for="EmailId" class="col-sm-3 col-form-label"><h4><b>Email Id</b></h4></label> -->
 	    			<div class="col-sm-3">
 	    				<!-- <input type="text" class="form-control" name="emailId"> -->
-	    				<form:input path="emailId" class="form-control" name="emailId" value="Email Id"/>
+	    				<form:input path="emailId" class="form-control" name="emailId" placeholder="Email Id"/>
 	    			</div>
 	    			<div class="col-sm-2">
 	    				<form:errors path="emailId" cssClass="error"/>
@@ -79,13 +79,13 @@
 	    		<div class="form-group row">
 	    			<!-- <label for="MobileNo" class="col-sm-3 col-form-label"><h4><b>Mobile No.</b></h4></label> -->
 	    			<div class="col-sm-3">
-	    				<input type="text" class="form-control" name="mobileNo" value="Mobile No.">
+	    				<input type="text" class="form-control" name="mobileNo" placeholder="Mobile No.">
 	    			</div>
 	    		</div>
 	    		<div class="form-group row">
 	    			<!-- <label for="Address" class="col-sm-3 col-form-label"><h4><b> Address</b></h4></label> -->
 	    			<div class="col-sm-3">
-	    				<input type="text" class="form-control" name="address" value="*Address">
+	    				<input type="text" class="form-control" name="address" placeholder="*Address">
 	    			</div>
 	    		</div>
 	    		<div class="form-group row">
@@ -97,7 +97,6 @@
 						<form:option value="BUYER" label="Buyer"/>
 						<form:option value="IMPORTER" label="Importer"/>
 						<form:option value="EXPORTER" label="Exporter"/>
-						<form:option value="CUSTOMS" label="Customs"/>
 						</form:select>
 					</div>
 	    		</div>

@@ -27,6 +27,13 @@
 </head>
 <body background="<c:url value="/resources/images/home.jpg"/>">
 	<div class="container">
+		<c:if test="${sessionScope.loggedIn && flag==0}">
+			<div class="alert alert-success alert-dismissible">
+  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  				<strong>You have successfully logged in!</strong>
+  				<article class="hidden">${flag=1}</article>
+			</div>
+		</c:if>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">

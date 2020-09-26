@@ -80,7 +80,7 @@ public class UserImpl implements UserDAO{
 
 	public List<User> getUserList() {
 		Session session=sessionFactory.openSession();
-		List<User> listUsers=(List<User>)(session.createQuery("from User").list());
+		List<User> listUsers=(List<User>)(session.createQuery("from User where role!='CUSTOMS'").list());
 		session.close();
 		return listUsers;
 	}
