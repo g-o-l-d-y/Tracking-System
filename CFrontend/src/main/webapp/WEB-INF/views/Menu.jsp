@@ -111,7 +111,7 @@
 	    <div id="myRSidenav" class="sidenav">
 		    <c:if test="${!sessionScope.loggedIn}">	
 		    	<a href="<c:url value="/Home"/>" id="home"><span class="glyphicon glyphicon-home"></span> Home</a>
-		    	<a href="<c:url value="AboutUs"/>" id="about"><span class="glyphicon glyphicon-hand-right"></span> About Us</a>
+		    	<a href="<c:url value="AboutUs"/>" id="about"><span class="glyphicon glyphicon-hand-right"></span> Idea|Team</a>
 		      	<%-- <a href="<c:url value="ContactUs"/>" id="contact"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a> --%>
 		    </c:if>
 		    <c:if test="${sessionScope.loggedIn && sessionScope.role=='SELLER'}">

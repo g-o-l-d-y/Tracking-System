@@ -25,7 +25,7 @@
 		}
 	</style>
 </head>
-<body background="<c:url value="/resources/images/home.jpg"/>">
+<body>
 	<div class="container">
 		<c:if test="${sessionScope.loggedIn && flag==0}">
 			<div class="alert alert-success alert-dismissible">
