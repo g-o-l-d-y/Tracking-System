@@ -1,3 +1,3 @@
 # Tracking-System
 
-A webapp that streamlines the process of import and export of goods.
+A web app that streamlines the process of import and export of goods.
